@@ -5,12 +5,12 @@ namespace App;
 class CryptoApiHelper
 {
 
-   static public function getCryptoData()
+   static public function getCryptoData(): \stdClass
     {
         $url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
         $parameters = [
             'start' => '1',
-            'limit' => '5',
+            'limit' => '100',
             'sort' => 'name',
 
         ];
@@ -32,9 +32,8 @@ class CryptoApiHelper
            CURLOPT_RETURNTRANSFER => 1         // ask for raw response instead of bool
        ));
 
-       $response = curl_exec($curl); // Send the request, save the response
-        var_dump($curl);
-       curl_close($curl); // Close request
+        $response = curl_exec($curl); // Send the request, save the response
+        curl_close($curl); // Close request
         return json_decode($response);
 
         //return $response;

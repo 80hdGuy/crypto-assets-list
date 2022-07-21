@@ -4,5 +4,5 @@ namespace App;
 
 interface IHandler
 {
-    public function loadLayout();
+    public function loadLayout(): string;
 }

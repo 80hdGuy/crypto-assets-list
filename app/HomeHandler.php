@@ -2,14 +2,34 @@
 
 namespace App;
 
+use stdClass;
 
 class HomeHandler implements IHandler
 {
-    public function loadLayout()
+    public function loadLayout(): string
     {
-        return CryptoApiHelper::getCryptoData();
-       //return TwigHelper::generatePage(
-        //   "app/home.html",
-        //   ['numbers' => range(0,10)]);
+
+        return TwigHelper::generatePage(
+            "app/home.html",
+            $this->convertCoinData(CryptoApiHelper::getCryptoData())
+        );
+    }
+
+    /**
+     * @param stdClass $rawCoinData
+     * @return array
+     */
+    private function convertCoinData(stdClass $rawCoinData): array
+    {
+        $coinDataList = $rawCoinData->data;
+        $convertedCoinData = ["coins" => []];
+        foreach ($coinDataList as $coin){
+            $convertedCoinData["coins"][] = [
+                "name" => $coin->name,
+                "symbol" => $coin->symbol,
+                "total_supply" => $coin->total_supply
+            ];
+        }
+        return $convertedCoinData;
     }
 }

@@ -4,15 +4,28 @@
     <title>Crypto assets list</title>
 </head>
 <body style="text-align: center">
-<table>
-    <caption>
-        <strong></strong>
-    </caption>
-</table>
-<h1>Members</h1>
-<tr>
+<div style="align-items: center">
+    <table style="width: min-content">
+        <caption>
+            <strong>Sh*t Coins</strong>
+        </caption>
+        <tr>
+            <th>Name</th>
+            <th>symbol</th>
+            <th>total_supply</th>
+        </tr>
+        {% for coin in coins %}
+        <tr style="text-align: left">
+            <th>{{ coin.name }}</th>
+            <th>{{ coin.symbol }}</th>
+            <th>{{ coin.total_supply }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 
-</tr>
+
+
 
 </body>
 </html>

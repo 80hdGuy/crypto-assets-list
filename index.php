@@ -33,7 +33,7 @@ switch ($routeInfo[0]) {
         $handler = new $handler;
 
         if($handler instanceof App\IHandler)
-            var_dump($handler->loadLayout());
+            echo $handler->loadLayout();
         break;
 }
 
