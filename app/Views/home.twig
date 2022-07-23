@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto assets list</title>
+</head>
+<body style="text-align: center">
+<div>
+    <table style="width: 400px; margin: auto; border-collapse: collapse">
+        <caption>
+            <h1>
+                <strong style="color: aqua">Sh*t Coins</strong>
+            </h1>
+        </caption>
+        <tr style="text-align: left ; color: coral; border-bottom:1pt solid orange">
+            <th style="width: 40%">Name</th>
+            <th style="width: 30%">Symbol</th>
+            <th style="text-align: right">Price (USD)</th>
+        </tr>
+        {% for coin in assets %}
+            <tr style="text-align: left">
+                <th>{{ coin.name }}</th>
+                <th>{{ coin.symbol }}</th>
+                <th style="text-align: right">{{ coin.priceInUSD }}</th>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

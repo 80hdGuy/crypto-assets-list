@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/', App\HomeHandler::class );
+    $r->addRoute('GET', '/', "App\Controllers\CryptoAssetController@getAssets" );
 });
 
 // Fetch method and URI from somewhere
@@ -30,10 +30,11 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
 
-        $handler = new $handler;
+        [$controller,$method] = explode("@",$handler);
+        $response = (new $controller)->$method();
 
-        if($handler instanceof App\IHandler)
-            echo $handler->loadLayout();
+        echo $response;
+
         break;
 }
 
